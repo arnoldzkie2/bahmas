@@ -1,0 +1,162 @@
+.main-child-record {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    padding: 3%;
+    height: calc(100vh - 50px);
+}
+
+.main-child-record h1 {
+    color: var(--second);
+    font-size: 2.5rem;
+}
+
+.main-child-record h1 i {
+    color: var(--accent);
+}
+
+.main-child-record .content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.main-child-record .content .option {
+    margin-right: auto;
+    display: flex;
+    min-width: 150px;
+    flex-direction: column;
+    gap: 20px;
+}
+.main-child-record .content .option a {
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border: 1px solid var(--accent);
+    outline: none;
+    cursor: pointer;
+    background: var(--main1);
+    color: var(--accent);
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+.main-child-record .content .display {
+    display: flex;
+    margin:0 10%;
+    flex-direction: column;
+    width: 100%;
+}
+
+.main-child-record .content .display h2 {
+   color: var(--second); 
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+   font-size: 1.8rem;
+}
+
+.main-child-record .content .display h2 span {
+    background-color: var(--accent);
+    color: var(--main1);
+    padding: 0 3px;
+    font-size: 1.7rem;
+    border-radius: 5px;
+}
+.main-child-record .content .display .features {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.main-child-record .content .display .features .entries {
+    color: var(--second);
+    font-size: 1.1rem;
+}
+
+.main-child-record .content .display .features .search {
+    display: flex;
+}
+.main-child-record .content .display .features .search input {
+    padding: 9px;
+    height: 35px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    box-shadow:  0 0 1px var(--second);
+    border-radius: 3px 0 0 3px;
+    width: 200px;
+}
+.main-child-record .content .display .features .search input:focus {
+    outline: 1px solid var(--accent);
+}
+.main-child-record .content .display .features .search i {
+    background-color: var(--accent);
+    box-shadow:  0 0 1px var(--second);
+    color: var(--main1);
+    width: 35px;
+    border-radius: 0 3px 3px 0;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    justify-content: center;
+}
+
+.main-child-record .content .display .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 0;
+    align-items: center;
+    padding-bottom: 50px;
+}
+.main-child-record .content .display .pagination div {
+    color: var(--second);
+    margin-right: 10px;
+}
+
+.main-child-record .content .display .pagination a {
+    width: 80px;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 1rem;
+    height: 30px;
+    background-color: var(--main1);
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+table .name {
+    cursor: pointer;
+  }
+  table .name:hover {
+    color: var(--accent);
+}

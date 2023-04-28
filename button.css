@@ -1,0 +1,12 @@
+@import './global.css';
+
+.print {
+    border: 1px solid var(--accent);
+    background-color: var(--main1);
+    color: var(--accent);
+    height: 40px;
+    outline: none;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,90 @@
+.new-child{
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 5%;
+}
+.new-child h1 {
+    color: var(--second);
+    font-weight: 900;
+    letter-spacing: -1px;
+    font-size: 2.5rem;
+}
+
+.new-child form {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    max-width: 500px;
+    background: var(--main1);
+    padding: 30px;
+}
+.new-child form .two{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.new-child form input {
+    width: 100%;
+    height: 35px;
+    font-size: 0.9rem;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 1px var(--second);
+}
+.new-child form input:focus {
+    outline: 1px solid var(--accent);
+}
+.new-child form .option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.new-child form .option a {
+    width: 50%;
+    height: 40px;
+    text-decoration: none;
+    color: var(--accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main1);
+    border: 1px solid var(--accent);
+}
+.new-child form .option button {
+    height: 40px;
+    width: 50%;
+    outline: none;
+    border: none;
+    background-color: var(--accent);
+    color: var(--main1);
+    align-self: flex-end;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+label {
+    color: var(--second);
+    font-weight: bold;
+}
+
+.err {
+    text-align: center;
+    background-color: pink;
+    color: red;
+    border: 1px solid red;
+    border-radius: 20px;
+    padding: 5px 0;
+    width: 50%;
+    align-self: center;
+}

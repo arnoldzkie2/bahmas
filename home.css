@@ -1,0 +1,45 @@
+.main {
+    flex-direction: column;
+}
+
+.main h1 {
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: var(--second);
+    margin-bottom: 10px;
+}
+
+.main h3 {
+    color: var(--second);
+}
+
+
+.main .card-container{
+    display: flex;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.main .card-container .card {
+    background-color: var(--main1);
+    width: 200px;
+    flex-direction: column;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    color: var(--second);
+    justify-content: space-between;
+    transition: 0.2s;
+    border-radius: 20px;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.main .card-container .card:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+}
+
+.main .card-container .card img {
+    width: 100%;
+}

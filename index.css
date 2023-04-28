@@ -1,0 +1,74 @@
+@import './global.css';
+.header {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    box-shadow: 0 0 1px  var(--second);
+    background-color: var(--main1);
+    justify-content: space-evenly;
+    padding: 0 10%;
+}
+.header img {
+    width: 50px;
+    object-fit: cover;
+    height: 50px;
+}
+.header .active {
+    color: var(--accent);
+}
+.header a {
+    all: unset;
+    transition: 0.2s;
+    color: var(--second);
+    cursor: pointer;
+}
+
+.header a:hover {
+    color: var(--accent);
+}
+.main {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    height: calc(100vh - 50px);
+}
+.medicine {
+    position: relative;
+    cursor: pointer;
+}
+
+.medicine:hover ul {
+    display: block;
+}
+.medicine ul{
+    top: 75%;
+    display: none;
+    z-index: 2;
+    position: absolute;
+    border-radius: 0 0 10px 10px;
+    list-style: none;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+}
+
+.medicine ul li {
+    margin: 10px 0;
+}
+
+.medicine ul li a {
+    font-size: 1.1rem;
+    color: var(--main1);
+}
+
+.medicine ul li:hover {
+    color: var(--accent);
+}  
+

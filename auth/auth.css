@@ -1,0 +1,72 @@
+@import '../global.css';
+
+.container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ gap: 40px;
+}
+
+.container .err {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+.container h1 {
+    color: var(--accent);
+    font-weight: 900;
+    letter-spacing: -1px;
+    font-size: 3rem;
+}
+.container form {
+    width: 85vw;
+    max-width: 400px;
+    display: flex;
+    padding: 30px;
+    background-color: var(--main1);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    flex-direction: column;
+}
+
+.container form input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    outline: none;
+    font-size: 1rem;
+    margin: 10px 0;
+    border: none;
+    box-shadow:  0 0 1px var(--second1);
+}
+
+.container form  .two {
+    display: flex;
+    gap: 10px;
+}
+
+.container form button {
+    width: 100%;
+    height: 45px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1.3rem;
+    background-color: var(--accent);
+    color: var(--main1);
+    margin: 15px 0;
+}
+
+.container form .auth-footer{
+    text-align: center;
+    color: var(--second1);
+}
+
+.container form .auth-footer a {
+    all: unset;
+    color: var(--accent);
+    font-weight: bold;
+    cursor: pointer;
+}
