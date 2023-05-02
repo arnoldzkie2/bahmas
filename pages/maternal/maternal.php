@@ -1,46 +1,41 @@
 <?php
-
 session_start();
 if(!isset($_SESSION['admin'])){
   header('location: ../../auth/login.php');
   exit();
 }
-
 include '../../db/conn.php';
 $entries = isset($_GET['entries']) ? $_GET['entries'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $entries;
-$query = "SELECT * FROM population LIMIT $start, $entries";
+$query = "SELECT * FROM maternal LIMIT $start, $entries";
 $result = mysqli_query($con, $query);
-$total_population = mysqli_num_rows(mysqli_query($con, "SELECT * FROM population"));
-$total_pages = ceil($total_population / $entries);
-
+$total_children = mysqli_num_rows(mysqli_query($con, "SELECT * FROM maternal"));
+$total_pages = ceil($total_children / $entries);
 if(isset($_GET['print'])) {
-  header('Content-Type: text/csv');
-  header('Content-Disposition: attachment; filename="population.csv"');
-    $output = fopen('php://output', 'w');
-    $headers = array('ID', 'Full Name','Purok name','Gender', 'Age', 'Civil status', 'Address');
-    fputcsv($output, $headers);
-    $index = $start + 1;
-    $total_data = "select * from population";
-    $result_data = mysqli_query($con, $total_data);
-    while($row = mysqli_fetch_assoc($result_data)) {
-        $fullName = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
-        $address = $row['street'] . " " . $row['barangay'] . " " . $row['city'];
-        $line = array($index, $fullName, $row['purok_name'], $row['gender'], $row['age'], $row['civil_status'],$address);
-        fputcsv($output, $line);
-        $index++;
-    }
-    fclose($output);
-    exit();
+header('Content-Type: text/csv');
+header('Content-Disposition: attachment; filename="maternal.csv"');
+  $output = fopen('php://output', 'w');
+  $headers = array('#', 'Name','Address', 'Spouse', 'Contact #', 'Civil Status', 'Birthdate', 'Age', 'Blood_pressure', 'Weight', 'Last period', 'Month of pregnancy', 'Month of delivery', 'Date');
+  fputcsv($output, $headers);
+  $index = $start + 1;
+  $total_data = "select * from maternal";
+  $result_data = mysqli_query($con, $total_data);
+  while($row = mysqli_fetch_assoc($result_data)) {
+      $fullName = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
+      $line = array($index, $fullName,$row['address'], $row['spouse'], $row['contact_no'], $row['civil_status'], $row['birthdate'], $row['age'], $row['blood_pressure'], $row['weight'], $row['last_period'], $row['month_pregnancy'], $row['month_delivery'], $row['date']);
+      fputcsv($output, $line);
+      $index++;
   }
+  fclose($output);
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./population.css">
-    <link rel="stylesheet" href="../../button.css">
+    <link rel="stylesheet" href="./maternal.css">
     <link rel="stylesheet" href="../../index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,8 +48,8 @@ if(isset($_GET['print'])) {
         <a href="../../index.php"><i class="fa-solid fa-house"></i> Home</a>
         <a href="../../pages/child/child-record.php"><i class="fa-solid fa-child"></i> Child Record</a>
         <a href="../../pages/patient/patient.php"><i class="fa-solid fa-hospital-user"></i> Patient</a>
-        <a href="../../pages/maternal/maternal.php"><i class="fa-solid fa-person-breastfeeding"></i></i> Maternal</a>
-        <a href="../../pages/population/population.php"  class='active'><i class="fa-solid fa-users"></i> Population</a>
+        <a href="../../pages/maternal/maternal.php" class='active'><i class="fa-solid fa-person-breastfeeding"></i> Maternal</a>
+        <a href="../../pages/population/population.php"><i class="fa-solid fa-users"></i> Population</a>
         <div class="medicine" ><i class="fa-solid fa-kit-medical"></i> Medicine
         <i class="fa-solid fa-angle-down"></i><ul>
             <li><a href="../../pages/medicine/inventory.php">Inventory</a></li>
@@ -64,17 +59,14 @@ if(isset($_GET['print'])) {
         <a href="../../auth/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
 </header>
 <main class='main-child-record'>
-<h1><i class="fa-solid fa-users" ></i> Population</h1>
+<h1><i class="fa-solid fa-person-breastfeeding"></i> Maternal Record</h1>
 <div class="content">
-    <form class="option">
-          <a href="./new-population.php">Add New</a>
-          <button name='print' class='print'>Print</button>
+    <form class="option" method="get">
+          <a href="./new-maternal.php">Add New</a>
+          <button name="print" class='print'>Print</button>
     </form>
-<?php
-
-?>
 <div class="display">
-  <h2>Total number of total population <span><?php echo $total_population ?></span></h2>
+  <h2>Total number of parent <span><?php echo $total_children ?></span></h2>
   <div class="features">
     <div class="entries">
       Show 
@@ -85,40 +77,43 @@ if(isset($_GET['print'])) {
       </select> entries
     </div>
     <div class="search">
-      <input type="text" placeholder='Search person' oninput="filterTable()"><i class="fa-solid fa-magnifying-glass" onclick="filterTable()"></i>
+      <input type="text" placeholder='Search Parent' oninput="filterTable()"><i class="fa-solid fa-magnifying-glass" onclick="filterTable()"></i>
     </div>
   </div>
-  <table id="population-table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Full name</th>
-      <th>Purok name</th>
-      <th>Gender</th>
-      <th>Age</th>
-      <th>Civil status</th>
-      <th>Address</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php 
-      $index = $start + 1;
-      while($row = mysqli_fetch_assoc($result)): 
-    ?>
+  <table id="child-table">
+    <thead>
       <tr>
-        <!-- Table Data -->
-        <td><?php echo $index ?></td> <!-- # -->
-        <td onClick="showChildInfo(<?php echo $row['id']?>)" class='name'><?php echo $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'] ?></td> <!-- Patient name -->
-        <td><?php echo $row['purok_name']?></td>
-        <td><?php echo $row['gender'] ?></td> <!-- Gender -->
-        <td><?php echo $row['age'] ?></td> <!-- Age -->
-        <td><?php echo $row['civil_status'] ?></td> <!-- Civil status -->
-        <td><?php echo $row['street'] . " " . $row['barangay'] . " " . $row['city'] ?></td> <!-- Birthday -->
+        <th>#</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Blood pressure</th>
+        <th>Weight</th>
+        <th>Last period</th>
+        <th>Month of pregnancy</th>
+        <th>Month of delivery</th>
+        <th>Date</th>
       </tr>
-      <?php $index++; ?>
-    <?php endwhile; ?>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <?php 
+        $index = $start + 1;
+        while($row = mysqli_fetch_assoc($result)): 
+      ?>
+        <tr>
+          <td><?php echo $index ?></td>
+          <td onClick="showChildInfo(<?php echo $row['id']?>)" class='name'><?php echo $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'] ?></td>
+          <td><?php echo $row['age'] ?></td>
+          <td><?php echo $row['blood_pressure'] ?></td>
+          <td><?php echo $row['weight'] ?></td>
+          <td><?php echo $row['last_period'] ?></td>
+          <td><?php echo $row['month_pregnancy'] ?></td>
+          <td><?php echo $row['month_delivery'] ?></td>
+          <td><?php echo $row['date'] ?></td>
+        </tr>
+        <?php $index++; ?>
+      <?php endwhile; ?>
+    </tbody>
+  </table>
   <div class="pagination">
     <div>Page <?php echo $page ?> of <?php echo $total_pages ?></div>
     <?php if($page > 1): ?>
@@ -137,11 +132,12 @@ if(isset($_GET['print'])) {
     urlParams.set('entries', entries);
     window.location.search = urlParams.toString();
   }
+
   function filterTable() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.querySelector(".search input");
     filter = input.value.toUpperCase();
-    table = document.getElementById("population-table");
+    table = document.getElementById("child-table");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[1];
@@ -156,7 +152,7 @@ if(isset($_GET['print'])) {
     }
   }
   function showChildInfo(id){
-  window.location.href = `../../routes/population/population-info.php?id=${id}`;
+  window.location.href = `../../routes/maternal/maternal-info.php?id=${id}`;
 }
 
 </script>

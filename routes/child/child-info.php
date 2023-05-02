@@ -77,6 +77,7 @@ $row = $result->fetch_assoc();
         <a href="../../index.php"><i class="fa-solid fa-house"></i> Home</a>
         <a href="../../pages/child/child-record.php"  class='active'><i class="fa-solid fa-child"></i> Child Record</a>
         <a href="../../pages/patient/patient.php"><i class="fa-solid fa-hospital-user"></i> Patient</a>
+        <a href="../../pages/maternal/maternal.php"><i class="fa-solid fa-person-breastfeeding"></i></i> Maternal</a>
         <a href="../../pages/population/population.php"><i class="fa-solid fa-users"></i> Population</a>
         <div class="medicine" ><i class="fa-solid fa-kit-medical"></i> Medicine
         <i class="fa-solid fa-angle-down"></i><ul>
@@ -93,6 +94,7 @@ $row = $result->fetch_assoc();
             echo '<div class="err">' . $err . '</div>';
         }
         ?>
+
         <label>Child first / middle / last name</label>
         <div class="two">
             <input type="text" placeholder="Enter first name" name="child_first_name" value="<?php echo $row['child_first_name']; ?>" required>

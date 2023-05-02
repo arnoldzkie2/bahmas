@@ -16,7 +16,7 @@ $total_pages = ceil($total_item / $entries);
 
 if(isset($_GET['print'])) {
     header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="child.csv"');
+    header('Content-Disposition: attachment; filename="logs.csv"');
       $output = fopen('php://output', 'w');
       $headers = array('ID', 'Patient name','Temperature','Blood pressure', 'Sickness', 'Medicine', 'Quantity', 'Date');
       fputcsv($output, $headers);
@@ -52,6 +52,7 @@ if(isset($_GET['print'])) {
         <a href="../../index.php"><i class="fa-solid fa-house"></i> Home</a>
         <a href="../../pages/child/child-record.php"><i class="fa-solid fa-child"></i> Child Record</a>
         <a href="../../pages/patient/patient.php"><i class="fa-solid fa-hospital-user" ></i> Patient</a>
+        <a href="../../pages/maternal/maternal.php"><i class="fa-solid fa-person-breastfeeding"></i></i> Maternal</a>
         <a href="../../pages/population/population.php"><i class="fa-solid fa-users"></i> Population</a>
         <div class="medicine active" ><i class="fa-solid fa-kit-medical"></i> Medicine
         <i class="fa-solid fa-angle-down"></i><ul>
@@ -89,6 +90,7 @@ if(isset($_GET['print'])) {
   <table id="logs-table">
   <thead>
     <tr>
+      <th>#</th>
       <th>Patient name</th>
       <th>Temperature</th>
       <th>Blood pressure</th>
@@ -108,6 +110,7 @@ if(isset($_GET['print'])) {
         }
     ?>
       <tr>  
+        <td><?php echo $index ?></td>
         <td class="name" onclick="showChildInfo(<?php echo $row['id']?>)"><?php echo $row['patient_name'] ?></td> <!-- Gender -->
         <td><?php echo $row['temperature'] ?></td> <!-- Gender -->
         <td><?php echo $row['blood_pressure'] ?></td> <!-- Age -->

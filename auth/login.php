@@ -22,7 +22,7 @@ if(isset($_POST['login'])){
     <link rel="stylesheet" href="./auth.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTED</title>
+    <title>BAHMAS</title>
 </head>
 <body>
 <div class="container">

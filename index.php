@@ -23,6 +23,7 @@ if(!isset($_SESSION['admin'])){
         <a href="./index.php" class='active'><i class="fa-solid fa-house"></i> Home</a>
         <a href="./pages/child/child-record.php"><i class="fa-solid fa-child"></i> Child Record</a>
         <a href="./pages/patient/patient.php"><i class="fa-solid fa-hospital-user"></i> Patient</a>
+        <a href="./pages/maternal/maternal.php"><i class="fa-solid fa-person-breastfeeding"></i></i> Maternal</a>
         <a href="./pages/population/population.php"><i class="fa-solid fa-users"></i> Population</a>
         <div class="medicine"><i class="fa-solid fa-kit-medical"></i> Medicine
         <i class="fa-solid fa-angle-down"></i><ul>
@@ -37,23 +38,23 @@ if(!isset($_SESSION['admin'])){
     <h3>We offer various health services for our community including:</h3>
     <div class="card-container">
         <div class="card">
-            <img src="./img1.jpg" alt="">
+            <img src="./assets/img1.jpg" alt="">
             <h4>Medical consultations</h4>
         </div>
         <div class="card">
-            <img src="./img2.jpg" alt="">
+            <img src="./assets/img2.jpg" alt="">
             <h4>Nutrition counseling</h4>
         </div>
         <div class="card">
-            <img src="./img3.jpg" alt="">
+            <img src="./assets/img3.jpg" alt="">
             <h4>Vaccinations</h4>
         </div>
         <div class="card">
-            <img src="./img4.jpg" alt="">
+            <img src="./assets/img4.jpg" alt="">
             <h4>Health Education</h4>
         </div>
         <div class="card">
-            <img src="./img5.jpg" alt="">
+            <img src="./assets/img5.jpg" alt="">
             <h4>Family Planning/Education</h4>
         </div>
     </div>
